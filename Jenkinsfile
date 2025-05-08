@@ -2,14 +2,13 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds') 
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                 url: 'https://github.com/ArcaneNova/react-app.git',
-                 git branch: 'main'
+                git url: 'https://github.com/ArcaneNova/react-app.git', branch: 'main'
             }
         }
 
@@ -35,10 +34,10 @@ pipeline {
 
     post {
         success {
-            echo "Build and Push successful!"
+            echo "✅ Build and Push successful!"
         }
         failure {
-            echo "Build or Push failed."
+            echo "❌ Build or Push failed."
         }
     }
 }
